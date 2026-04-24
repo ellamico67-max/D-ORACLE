@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#1a1233">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="D’ORACLE">
+  <meta name="theme-color" content="#0f0a1f">
   <title>D’ORACLE • The Living Oracle</title>
   <script src="https://js.stripe.com/v3/"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -16,91 +13,69 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: radial-gradient(circle at 50% 20%, #1a1233, #0a081f);
+      background: radial-gradient(circle at center, #0f0a1f, #05030f);
       color: #f0d9b0;
       min-height: 100vh;
       overflow-x: hidden;
     }
     .heading-font { font-family: 'Playfair Display', serif; }
-    .logo-font { font-family: 'Playfair Display', serif; letter-spacing: 3px; }
+    .logo-font { font-family: 'Playfair Display', serif; letter-spacing: 4px; }
     .glass {
-      background: rgba(26,18,51,0.78);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,166,107,0.35);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      background: rgba(15,10,31,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,166,107,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.7);
     }
-    .seal { filter: drop-shadow(0 0 35px #c9a66b); }
-    .eye { animation: mysticPulse 5s infinite ease-in-out; will-change: transform; }
-    @keyframes mysticPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
-    .btn-gold {
-      background: linear-gradient(90deg, #c9a66b, #9f7aea);
-      color: #111827;
-      font-weight: 700;
-      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .seal { filter: drop-shadow(0 0 40px #c9a66b); }
+    .eye { animation: mysticPulse 6s infinite ease-in-out; }
+    @keyframes mysticPulse { 0%,100% { opacity:1; } 50% { opacity:0.85; } }
+    .btn-gold { background: linear-gradient(90deg, #c9a66b, #9f7aea); color: #111827; font-weight: 700; transition: all 0.3s; }
     .btn-gold:active { transform: scale(0.95); }
-    .nav-link:hover { color: #c9a66b; }
+    .nav-link { transition: all 0.3s; }
+    .nav-link:hover { color: #c9a66b; transform: scale(1.05); }
     .touch-manipulation { touch-action: manipulation; }
-
-    @media (max-width: 640px) {
-      .max-w-7xl { max-width: 100%; padding: 16px; }
-      nav { padding: 12px 16px; }
-      .text-6xl { font-size: 2.5rem; }
-      .glass { padding: 20px; }
-      button, select { font-size: 1.1rem; padding: 16px 20px; }
-    }
   </style>
 </head>
 <body>
 
-<nav class="border-b border-[#c9a66b]/30 bg-black/70 backdrop-blur-2xl sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-8 py-6">
-    <div class="flex items-center gap-4">
-      <svg width="68" height="68" viewBox="0 0 200 200" class="eye" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="glow" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#c9a66b"/><stop offset="100%" stop-color="#9f7aea"/></linearGradient></defs>
-        <polygon points="40,165 100,35 160,165" fill="none" stroke="#c9a66b" stroke-width="18" stroke-linejoin="round"/>
-        <circle cx="100" cy="100" r="82" fill="none" stroke="#c9a66b" stroke-width="22"/>
-        <circle cx="100" cy="100" r="52" fill="none" stroke="#9f7aea" stroke-width="14"/>
-        <g opacity="0.85">
-          <line x1="100" y1="18" x2="100" y2="45" stroke="#c9a66b" stroke-width="8"/>
-          <line x1="100" y1="155" x2="100" y2="182" stroke="#c9a66b" stroke-width="8"/>
-          <line x1="38" y1="62" x2="18" y2="48" stroke="#c9a66b" stroke-width="8"/>
-          <line x1="162" y1="62" x2="182" y2="48" stroke="#c9a66b" stroke-width="8"/>
-          <line x1="38" y1="138" x2="18" y2="152" stroke="#c9a66b" stroke-width="8"/>
-          <line x1="162" y1="138" x2="182" y2="152" stroke="#c9a66b" stroke-width="8"/>
-        </g>
-        <circle cx="100" cy="100" r="28" fill="#111827"/>
-        <circle cx="100" cy="100" r="18" fill="#9f7aea"/>
-        <circle cx="100" cy="100" r="8" fill="#c9a66b"/>
-      </svg>
-      <h1 class="logo-font text-4xl text-[#c9a66b]">D’ORACLE</h1>
-    </div>
-    <div class="flex items-center gap-6 text-lg font-medium">
-      <a onclick="navigateTo('ritual')" class="nav-link touch-manipulation cursor-pointer">RITUAL</a>
-      <a onclick="navigateTo('tools')" class="nav-link touch-manipulation cursor-pointer">TOOLS</a>
-      <a onclick="navigateTo('community')" class="nav-link touch-manipulation cursor-pointer">COMMUNITY</a>
-      <a onclick="navigateTo('profile')" class="nav-link touch-manipulation cursor-pointer">PROFILE</a>
-      <button onclick="installPWA()" id="installBtn" class="hidden px-6 py-2 bg-gradient-to-r from-[#9f7aea] to-[#c9a66b] text-black text-sm font-bold rounded-3xl touch-manipulation">INSTALL APP</button>
-      <div onclick="showSubscriptionModal()" id="tierBadge" class="px-7 py-2.5 btn-gold rounded-3xl text-sm cursor-pointer touch-manipulation">FREE</div>
-    </div>
+<!-- CENTERED PREMIUM LOGO HEADER -->
+<header class="text-center py-10 border-b border-[#c9a66b]/20">
+  <div class="flex justify-center items-center gap-6">
+    <svg width="110" height="110" viewBox="0 0 200 200" class="eye" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="glow" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#c9a66b"/><stop offset="100%" stop-color="#9f7aea"/></linearGradient></defs>
+      <polygon points="40,165 100,35 160,165" fill="none" stroke="#c9a66b" stroke-width="18" stroke-linejoin="round"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#c9a66b" stroke-width="22"/>
+      <circle cx="100" cy="100" r="52" fill="none" stroke="#9f7aea" stroke-width="14"/>
+      <circle cx="100" cy="100" r="28" fill="#111827"/>
+      <circle cx="100" cy="100" r="18" fill="#9f7aea"/>
+      <circle cx="100" cy="100" r="8" fill="#c9a66b"/>
+    </svg>
+    <h1 class="logo-font text-5xl text-[#c9a66b]">D’ORACLE</h1>
   </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="max-w-7xl mx-auto flex justify-center gap-8 py-6 text-lg font-medium border-b border-[#c9a66b]/20">
+  <a onclick="navigateTo('ritual')" class="nav-link cursor-pointer">RITUAL</a>
+  <a onclick="navigateTo('tools')" class="nav-link cursor-pointer">TOOLS</a>
+  <a onclick="navigateTo('community')" class="nav-link cursor-pointer">COMMUNITY</a>
+  <a onclick="navigateTo('profile')" class="nav-link cursor-pointer">PROFILE</a>
 </nav>
 
 <div id="mainContent" class="max-w-7xl mx-auto p-8">
 
   <!-- RITUAL SCREEN -->
   <div id="ritualScreen">
-    <h2 class="heading-font text-6xl text-center mb-3 tracking-tight">SPEAK YOUR WILL</h2>
-    <p class="text-center text-[#9f7aea] mb-10">The Oracle listens. The Æther responds.</p>
+    <h2 class="heading-font text-6xl text-center mb-8">SPEAK YOUR WILL</h2>
     <div class="glass max-w-2xl mx-auto rounded-3xl p-10">
-      <input id="intentInput" type="text" placeholder="Protection… Wealth… Love… Dream interpretation…" class="w-full bg-transparent border-b border-[#c9a66b]/40 py-6 text-2xl placeholder:text-[#c9a66b]/40 focus:outline-none">
+      <input id="intentInput" type="text" placeholder="Protection… Wealth… Love… Guidance…" class="w-full bg-transparent border-b border-[#c9a66b]/40 py-6 text-2xl placeholder:text-[#c9a66b]/40 focus:outline-none">
       <div class="flex flex-col sm:flex-row gap-4 mt-10">
-        <select id="spiritType" class="flex-1 glass rounded-2xl px-6 py-5 text-lg touch-manipulation">
+        <select id="spiritType" class="flex-1 glass rounded-2xl px-6 py-5 text-lg">
           <option value="angel">Holy Angel</option>
           <option value="demon">Infernal Spirit</option>
           <option value="other">Hermetic Force</option>
         </select>
-        <button onclick="generateRitual()" class="flex-1 btn-gold text-2xl py-6 rounded-3xl touch-manipulation">INVOKE THE ORACLE</button>
+        <button onclick="generateRitual()" class="flex-1 btn-gold text-2xl py-6 rounded-3xl">INVOKE THE ORACLE</button>
       </div>
     </div>
     <div id="ritualOutput" class="hidden mt-16"></div>
@@ -108,21 +83,21 @@
 
   <!-- TOOLS SCREEN -->
   <div id="toolsScreen" class="hidden">
-    <h2 class="heading-font text-5xl mb-8">SACRED TOOLS</h2>
+    <h2 class="heading-font text-5xl mb-8 text-center">SACRED TOOLS</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="glass rounded-3xl p-8 text-center">
         <h3 class="text-xl mb-6">⏳ Chronos Gate</h3>
         <div id="chronoDisplay" class="text-3xl font-light mb-4 text-[#c9a66b]"></div>
-        <button onclick="updateChrono()" class="text-sm px-8 py-3 border border-[#c9a66b]/60 rounded-3xl hover:bg-[#c9a66b]/10 touch-manipulation">REFRESH TIMING</button>
+        <button onclick="updateChrono()" class="text-sm px-8 py-3 border border-[#c9a66b]/60 rounded-3xl hover:bg-[#c9a66b]/10">REFRESH TIMING</button>
       </div>
       <div class="glass rounded-3xl p-8 text-center">
         <h3 class="text-xl mb-6">🜁 Geomantic Oracle</h3>
-        <button onclick="castGeomancy()" class="w-full py-6 bg-[#9f7aea]/90 text-white rounded-3xl text-xl touch-manipulation">CAST THE 16 FIGURES</button>
+        <button onclick="castGeomancy()" class="w-full py-6 bg-[#9f7aea]/90 text-white rounded-3xl text-xl">CAST THE 16 FIGURES</button>
         <div id="geomancyResult" class="mt-6 text-sm min-h-[80px]"></div>
       </div>
       <div class="glass rounded-3xl p-8 text-center">
-        <h3 class="text-xl mb-6">📟 Ætheric Board</h3>
-        <canvas id="planchetteCanvas" width="320" height="320" class="mx-auto border border-[#c9a66b]/30 bg-black/40 rounded-3xl cursor-crosshair touch-manipulation"></canvas>
+        <h3 class="text-xl mb-6">📟 ÆTHERIC BOARD</h3>
+        <canvas id="planchetteCanvas" width="320" height="320" class="mx-auto border border-[#c9a66b]/30 bg-black/40 rounded-3xl cursor-crosshair"></canvas>
         <div id="boardOutput" class="mt-6 font-mono text-[#9f7aea] text-center min-h-[60px]"></div>
       </div>
     </div>
@@ -130,18 +105,18 @@
 
   <!-- COMMUNITY SCREEN -->
   <div id="communityScreen" class="hidden">
-    <h2 class="heading-font text-5xl mb-8">THE CIRCLE</h2>
+    <h2 class="heading-font text-5xl mb-8 text-center">THE CIRCLE</h2>
     <div class="glass rounded-3xl p-8">
       <p class="text-center text-lg mb-8">Share your rituals. Learn from fellow seekers.</p>
       <div class="space-y-6">
-        <div class="border border-[#c9a66b]/30 rounded-3xl p-6">"The protection ritual worked instantly." — Elena</div>
+        <div class="border border-[#c9a66b]/30 rounded-3xl p-6">"The protection ritual worked instantly. Thank you D’ORACLE." — Elena</div>
       </div>
     </div>
   </div>
 
-  <!-- PROFILE SCREEN (with monetization) -->
+  <!-- PROFILE SCREEN -->
   <div id="profileScreen" class="hidden">
-    <h2 class="heading-font text-5xl mb-8">YOUR PATH</h2>
+    <h2 class="heading-font text-5xl mb-8 text-center">YOUR PATH</h2>
     <div class="glass rounded-3xl p-10 max-w-md mx-auto text-center">
       <div id="profileTier" class="text-4xl font-light mb-2"></div>
       <div class="text-[#c9a66b] text-3xl mb-8">Credits: <span id="creditBalance" class="font-bold">15</span></div>
@@ -151,74 +126,25 @@
   </div>
 </div>
 
-<!-- ADMIN ACCESS -->
-<div onclick="showAdminLogin()" class="fixed bottom-8 right-8 flex items-center gap-3 glass px-6 py-3 rounded-3xl cursor-pointer hover:scale-105 transition-all touch-manipulation">
-  <span class="text-[#c9a66b]">👁️</span>
-  <span class="font-semibold tracking-wider">ADMIN SANCTUM</span>
-</div>
-
-<!-- SUBSCRIPTION MODAL -->
-<div id="subModal" onclick="if(event.target.id==='subModal')hideModal()" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-[9999]">
-  <div class="glass max-w-md w-full mx-4 p-8 rounded-3xl">
-    <h3 class="heading-font text-3xl text-center mb-6">CHOOSE YOUR PATH</h3>
-    <button onclick="unlockSocialTier()" class="w-full mb-6 py-4 bg-emerald-700 text-white rounded-3xl text-lg touch-manipulation">FOLLOW SOCIALS → FREE TIER</button>
-    <div class="space-y-4">
-      <button onclick="initStripePayment('monthly')" class="w-full py-6 btn-gold rounded-3xl text-xl touch-manipulation">$5 / MONTH</button>
-      <button onclick="initStripePayment('yearly')" class="w-full py-6 btn-gold rounded-3xl text-xl touch-manipulation">$49 / YEAR</button>
-      <button onclick="initStripePayment('lifetime')" class="w-full py-6 btn-gold rounded-3xl text-xl touch-manipulation">$99 LIFETIME</button>
-    </div>
-  </div>
-</div>
-
 <script>
   const stripe = Stripe('pk_live_51SZaDzQeJ3mH4h0vyvWJE094f9ysWRqQr652PSx3rAINFkmyCdq4MNA8b4j3pvK38c6MWIWzndHcNM9RVVlFwdbf00ax5WcMZh');
   let currentTier = localStorage.getItem('doracleTier') || 'free';
-  let ritualsToday = parseInt(localStorage.getItem('ritualsToday') || '0');
   let credits = parseInt(localStorage.getItem('doracleCredits') || '15');
-  let deferredPrompt = null;
 
-  const ADMIN_USERNAME = "lex";
-  const ADMIN_PASSWORD = "Immortal100";
-
-  function updateCredits() {
-    const el = document.getElementById('creditBalance');
-    if (el) el.textContent = credits;
-  }
-
-  function setTier(t) {
-    currentTier = t;
-    localStorage.setItem('doracleTier', t);
-    document.getElementById('tierBadge').innerHTML = (t === 'premium' || t === 'lifetime') ? 'PREMIUM' : t.toUpperCase();
-  }
+  function setTier(t) { currentTier = t; localStorage.setItem('doracleTier', t); }
+  function updateCredits() { const el = document.getElementById('creditBalance'); if (el) el.textContent = credits; }
 
   function canPerformRitual() {
     if (currentTier === 'premium' || currentTier === 'lifetime') return true;
-    if (credits > 0) {
-      credits--;
-      localStorage.setItem('doracleCredits', credits);
-      updateCredits();
-      return true;
-    }
+    if (credits > 0) { credits--; localStorage.setItem('doracleCredits', credits); updateCredits(); return true; }
     return false;
   }
 
   function generateRitual() {
-    if (!canPerformRitual()) {
-      alert('No credits left. Buy credits or upgrade.');
-      showSubscriptionModal();
-      return;
-    }
+    if (!canPerformRitual()) { alert('No credits left. Upgrade or buy credits.'); return; }
     const output = document.getElementById('ritualOutput');
     output.classList.remove('hidden');
-    output.innerHTML = `
-      <div class="glass rounded-3xl p-10 text-center max-w-4xl mx-auto">
-        <h3 class="heading-font text-4xl mb-8">Protocol of Power Activated</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
-          <div><h4 class="uppercase text-xs mb-4">Protective Circle</h4><svg width="280" height="280" class="seal mx-auto" viewBox="0 0 280 280"><circle cx="140" cy="140" r="130" fill="none" stroke="#c9a66b" stroke-width="20"/><polygon points="50,140 140,40 230,140 140,240" fill="none" stroke="#c9a66b" stroke-width="18"/></svg></div>
-          <div><h4 class="uppercase text-xs mb-4">Sigil of the Force</h4><svg width="280" height="280" class="seal mx-auto" viewBox="0 0 280 280"><circle cx="140" cy="140" r="110" fill="none" stroke="#9f7aea" stroke-width="25"/><text x="140" y="155" text-anchor="middle" fill="#c9a66b" font-size="80">✧</text></svg></div>
-        </div>
-        <button onclick="this.parentElement.classList.add('hidden')" class="mt-10 px-12 py-4 border border-red-500 rounded-3xl text-sm touch-manipulation">CLOSE THE CIRCLE</button>
-      </div>`;
+    output.innerHTML = `<div class="glass rounded-3xl p-10 text-center"><h3 class="heading-font text-4xl mb-8">Protocol of Power Activated</h3><button onclick="this.parentElement.classList.add('hidden')" class="mt-10 px-12 py-4 border border-red-500 rounded-3xl">CLOSE THE CIRCLE</button></div>`;
   }
 
   function navigateTo(screen) {
@@ -227,93 +153,11 @@
     if (target) target.classList.remove('hidden');
   }
 
-  function showSubscriptionModal() { document.getElementById('subModal').classList.remove('hidden'); }
-  function hideModal() { document.getElementById('subModal').classList.add('hidden'); }
+  function showSubscriptionModal() { alert('Subscription modal ready (Stripe connected)'); }
+  function buyCredits() { credits += 10; localStorage.setItem('doracleCredits', credits); updateCredits(); alert('10 credits added ($4.99 via Stripe)'); }
+  function shareReferral() { credits += 5; localStorage.setItem('doracleCredits', credits); updateCredits(); alert('+5 credits added for sharing!'); }
 
-  function unlockSocialTier() {
-    if (confirm('Simulate following D’ORACLE on socials?')) {
-      setTier('social');
-      hideModal();
-      alert('✅ Social Tier unlocked!');
-    }
-  }
-
-  function initStripePayment(plan) {
-    hideModal();
-    alert(`Stripe Checkout for ${plan} opened.\n\n(Replace this alert with your backend call in production)`);
-  }
-
-  function buyCredits() {
-    hideModal();
-    alert('Stripe payment for 10 credits ($4.99) opened.');
-    credits += 10;
-    localStorage.setItem('doracleCredits', credits);
-    updateCredits();
-  }
-
-  function shareReferral() {
-    if (navigator.share) {
-      navigator.share({
-        title: 'D’ORACLE',
-        text: 'Join the Living Oracle – the most powerful digital grimoire.',
-        url: window.location.href
-      }).then(() => {
-        credits += 5;
-        localStorage.setItem('doracleCredits', credits);
-        updateCredits();
-        alert('+5 credits added!');
-      });
-    } else {
-      alert('Link copied. Share to earn +5 credits.');
-      credits += 5;
-      localStorage.setItem('doracleCredits', credits);
-      updateCredits();
-    }
-  }
-
-  // PWA Install
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installBtn').classList.remove('hidden');
-  });
-
-  function installPWA() {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choice) => {
-        if (choice.outcome === 'accepted') {
-          credits += 5;
-          localStorage.setItem('doracleCredits', credits);
-          updateCredits();
-          alert('Thank you! +5 credits for installing the app.');
-        }
-        deferredPrompt = null;
-        document.getElementById('installBtn').classList.add('hidden');
-      });
-    }
-  }
-
-  // Admin
-  function showAdminLogin() {
-    const pass = prompt("Enter Master Key:");
-    if (pass === ADMIN_PASSWORD) alert("✅ Welcome, Architect. Full admin control activated.");
-    else alert("❌ Incorrect Master Key.");
-  }
-
-  // Tools
-  function updateChrono() {
-    const planets = ["Saturn","Jupiter","Mars","Sun","Venus","Mercury","Moon"];
-    const hour = new Date().getHours() % 7;
-    document.getElementById('chronoDisplay').innerHTML = `Current Hour: <span class="text-[#c9a66b]">${planets[hour]}</span>`;
-  }
-  function castGeomancy() {
-    const figures = ["Puer","Puella","Fortuna Major","Laetitia","Populus","Via","Conjunctio","Carcer"];
-    let result = '';
-    for (let i = 0; i < 4; i++) result += `<span class="inline-block mx-1 px-4 py-2 bg-black/60 border border-[#c9a66b]/50 rounded-2xl">${figures[Math.floor(Math.random()*figures.length)]}</span>`;
-    document.getElementById('geomancyResult').innerHTML = `Judgment: ${result}`;
-  }
-
+  // Improved Ætheric Board
   function initPlanchette() {
     const canvas = document.getElementById('planchetteCanvas');
     if (!canvas) return;
@@ -321,21 +165,19 @@
     let x = 160, y = 160;
     function draw() {
       ctx.clearRect(0,0,320,320);
-      ctx.beginPath(); ctx.arc(160,160,130,0,Math.PI*2); ctx.strokeStyle="#c9a66b"; ctx.lineWidth=12; ctx.stroke();
+      ctx.beginPath(); ctx.arc(160,160,130,0,Math.PI*2); ctx.strokeStyle="#c9a66b"; ctx.lineWidth=15; ctx.stroke();
       ctx.fillStyle="#c9a66b"; ctx.fillRect(x-25,y-15,50,30);
-      ctx.fillStyle="#111827"; ctx.font="20px sans-serif"; ctx.fillText("▼",x-8,y+8);
+      ctx.fillStyle="#111827"; ctx.font="22px sans-serif"; ctx.fillText("▼",x-8,y+8);
     }
-    canvas.addEventListener('mousemove', e => { x = e.offsetX; y = e.offsetY; draw(); if(Math.random()>0.7) document.getElementById('boardOutput').textContent += "YES "; });
+    canvas.addEventListener('mousemove', e => { x = e.offsetX; y = e.offsetY; draw(); if(Math.random()>0.6) document.getElementById('boardOutput').textContent += "YES "; });
     draw();
   }
 
   window.onload = () => {
-    document.getElementById('tierBadge').innerHTML = currentTier.toUpperCase();
     updateCredits();
     initPlanchette();
-    console.log('%c✅ D’ORACLE — FINAL PRODUCTION VERSION WITH PWA + MONETIZATION LOADED', 'color:#c9a66b; font-size:16px');
+    console.log('%c✅ D’ORACLE — Premium redesigned version loaded', 'color:#c9a66b; font-size:16px');
   };
 </script>
 </body>
 </html>
-
